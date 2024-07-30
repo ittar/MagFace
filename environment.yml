@@ -1,0 +1,29 @@
+name: magface
+channels:
+    - pytorch
+    - conda-forge
+    - defaults
+dependencies:
+    - python=3.10.13
+    - numpy
+    - pandas
+    - opencv
+    - pytorch
+    - torchvision
+    - scikit-learn
+    - matplotlib
+    - numpy
+    - scipy
+    - termcolor
+    - jupyterlab
+    - notebook
+    - seaborn
+    - loguru
+    - six
+    - imageio
+    - tqdm
+    - mtcnn
+    - tensorflow==2.15.0
+    - pip:
+      - torchshard
+      - pillow

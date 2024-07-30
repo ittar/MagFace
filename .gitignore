@@ -130,3 +130,9 @@ dmypy.json
 
 # Mac file
 *DS_Store
+
+# folder
+/resume
+/vid
+/img
+/df
