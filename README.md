@@ -23,7 +23,7 @@ in *IEEE Conference on Computer Vision and Pattern Recognition (CVPR)*, 2021, **
 **NOTE**: This repo is forked from the original version of magface
 
 
-## Create and activate the conda environment
+## Installation
 ```bash
 conda env create -f environment.yml
 conda activate magface
