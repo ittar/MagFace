@@ -20,18 +20,53 @@ in *IEEE Conference on Computer Vision and Pattern Recognition (CVPR)*, 2021, **
   1. CVPR [5-minute presentation](https://www.bilibili.com/video/BV1Jq4y1j7ZH).
   2. Will release a detailed version later.
 
-**NOTE**: The original codes are implemented on a private codebase and will not be released. 
-**This repo is an official but abridged version.** See todo list for plans.
+**NOTE**: This repo is forked from the original version of magface
 
-## BibTex
 
+## Create and activate the conda environment
+```bash
+conda env create -f environment.yml
+conda activate magface
 ```
-@inproceedings{meng2021magface,
-  title={{MagFace}: A universal representation for face recognition and quality assessment},
-  author={Meng, Qiang and Zhao, Shichao and Huang, Zhida and Zhou, Feng},
-  booktitle=CVPR,
-  year=2021
-}
+
+## Face Recognition with OpenCV
+
+This application uses OpenCV to capture images from your webcam. When you press the `1` key, the current frame is saved if a face is detected. The application then starts recognizing faces in subsequent frames. Release the saved face by press the `2` key.
+1. Navigate to the project directory:
+```bash
+  cd eval/eval_cam_recognition
+```
+2. Run the script
+  - if using GPU
+```bash
+  python cam.py --resume {your model path}
+```
+  - if using CPU
+```bash
+  python cam.py --resume {your model path} --cpu_mode
+```
+
+## Face capture with OpenCV
+This application uses OpenCV to capture images from your webcam. It saves the captured face image and the embedded vector from the model in a local dataframe. The script then uses t-SNE for 2D visualization plot.
+
+1. Navigate to the project directory:
+```bash
+  cd eval/eval_cam_recognition
+```
+2. Run the script The dataframe will be saved in `{root}/df/`
+  - if using GPU
+```bash
+  python capture.py --resume {your model path}
+```
+  - if using CPU
+```bash
+  python capture.py --resume {your model path} --cpu_mode
+```
+3. Run the notebook
+- Navigate to `{root}/notebook/tsne.ipynb` to reduce dimensions.
+4. Run the plot script
+```bash
+  python plot.py
 ```
 
 ## Model Zoo
@@ -107,63 +142,4 @@ Parallel training (Sec. 5.1 in [ArcFace](https://arxiv.org/pdf/1801.07698v3.pdf)
    - Generate features from a few samples by existing model and calculate their magnitudes.
    - Assume that magnitudes are distributed in `[x1, x2]`, then modify parameters to meet `l_a < x1, u_a > x2`.
    - In our scenario, we have a model trained by ArcFace which produces magnitudes around 1. `[l_a, u_a, l_m, u_m, l_g] =[1, 51, 0.45, 1, 5]` is a good choice.
-   - 
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=IrvingMeng/MagFace&type=Date)](https://star-history.com/#IrvingMeng/MagFace&Date)
-
-
-## Third-party Implementation
-
-- Pytorch: [FaceX-Zoo](https://github.com/JDAI-CV/FaceX-Zoo/tree/main/training_mode) from JDAI.
-- Pytorch: [pt-femb-face-embeddings](https://github.com/jonasgrebe/pt-femb-face-embeddings) from [Jonas Grebe](https://github.com/jonasgrebe)
-
-## Logs
-TODO list:
-
-- [x] add toy examples and release models
-- [x] migrate basic codes from the private codebase 
-- [x] add beamer (after the ddl for iccv2021)
-- [x] test the basic codes 
-- [ ] add presentation
-- [x] migrate parallel training 
-- [x] release mpu (Kaiyu Yue, in April) **renamed to torchshard**
-- [x] test parallel training 
-- [x] add evaluation codes for recognition
-- [x] add evaluation codes for quality assessment
-- [x] add fp16
-- [ ] test fp16
-- [x] extend the idea to CosFace, proved
-- [x] implement Mag-CosFace
-
-**20210909**: add evaluation code for quality assessments
-
-**20210723**: add evaluation code for recognition
-
-**20210610**：[IMPORTANT] Mag-CosFace + ddp is implemented and tested!
-
-**20210601**: Mag-CosFace is theoretically proved. Please check the updated arxiv paper.
-
-**20210531**: add the 5-minutes presentation
-
-**20210513**: add instructions for finetuning with MagFace
-
-**20210430**: Fix bugs for parallel training.
-
-**20210427**: [IMPORTANT] now parallel training is available (credits to Kaiyu Yue).
-
-**20210331** test fp32 + parallel training and release a model/log
-
-**20210325.2** add codes for parallel training as well as fp16 training (not tested).
-
-**20210325** the basic training codes are tested! Please find the trained model and logs from the table in Model Zoo.
-
-**20210323** add requirements and beamer presentation; add debug logs.
-
-**20210315** fix figure 2 and add gdrive link for checkpoint.
-
-**20210312** add the basic code (not tested yet).
-
-**20210312** add paper/poster/model and a toy example.
-
-**20210301** add ReadMe and license.
+  
