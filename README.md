@@ -32,7 +32,7 @@ conda activate magface
 ## Face Recognition with OpenCV
 
 This application uses OpenCV to capture images from your webcam. When you press the `1` key, the current frame is saved if a face is detected. The application then starts recognizing faces in subsequent frames. Release the saved face by press the `2` key.
-1. Navigate to the project directory:
+1. Navigate to the project directory
 ```bash
   cd eval/eval_cam_recognition
 ```
@@ -46,10 +46,10 @@ This application uses OpenCV to capture images from your webcam. When you press 
   python cam.py --resume {your model path} --cpu_mode
 ```
 
-## Face capture with OpenCV
+## Face Capture with OpenCV
 This application uses OpenCV to capture images from your webcam. It saves the captured face image and the embedded vector from the model in a local dataframe. The script then uses t-SNE for 2D visualization plot.
 
-1. Navigate to the project directory:
+1. Navigate to the project directory
 ```bash
   cd eval/eval_cam_recognition
 ```
